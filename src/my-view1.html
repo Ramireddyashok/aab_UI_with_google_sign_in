@@ -14,58 +14,84 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="my-view1">
 
-  <template>
+    <template>
 
-    <style>
-      :host {
-        display: block;
-        padding: 10px;
-      }
-      .card {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        margin: 24px;
-        border-radius: 5px;
-        background-color: #fff;
-        color: #757575;
-      }
-      .circle {
-        display: inline-block;
-        height: 64px;
-        width: 64px;
-        border-radius: 50%;
-        background: #ddd;
-        line-height: 64px;
-        font-size: 30px;
-        color: #555;
-        text-align: center;
-      }
-      h1 {
-        font-size: 22px;
-        margin: 16px 0;
-        color: #212121;
-      }
-    </style>
+        <style>
+            :host {
+                display: block;
+                padding: 10px;
+            }
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <google-signin
-              client-id="983439464209-ha1va498rvsmvgu3h7tb4ujsjc9hm9u2.apps.googleusercontent.com"></google-signin>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+            .card {
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+                padding: 16px;
+                margin: 24px;
+                border-radius: 5px;
+                background-color: #fff;
+                color: #757575;
+            }
 
-  </template>
+            .circle {
+                display: inline-block;
+                height: 64px;
+                width: 64px;
+                border-radius: 50%;
+                background: #ddd;
+                line-height: 64px;
+                font-size: 30px;
+                color: #555;
+                text-align: center;
+            }
 
-  <script>
+            h1 {
+                font-size: 22px;
+                margin: 16px 0;
+                color: #212121;
+            }
+        </style>
 
-    Polymer({
+        <div class="card">
+            <div class="circle">1</div>
+            <h1>Google Signin Demo</h1>
+            <google-signin
+                    client-id="983439464209-ha1va498rvsmvgu3h7tb4ujsjc9hm9u2.apps.googleusercontent.com"
+                    signed-in="{{signedIn}}"
+                    on-google-signin-aware-success="handleSignIn"
+                    on-google-signin-aware-signed-out="handleSignOut"
+            ></google-signin>
+            <p><strong>Signed In: 	&nbsp;&nbsp;</strong><span>{{signedIn}}</span></p>
+            <p><strong>UserName: 	&nbsp;	&nbsp;</strong><span>{{userName}}</span></p>
+            <p><strong>Email: 	&nbsp;	&nbsp;</strong><span>{{email}}</span></p>
+            <p><strong>Status: 	&nbsp;	&nbsp;</strong><span>{{status}}</span></p>
+            <p><strong>Id Token: 	&nbsp;	&nbsp;</strong><span>{{token}}</span></p>
+        </div>
 
-      is: 'my-view1'
+    </template>
 
-    });
+    <script>
 
-  </script>
+        Polymer({
+
+            is: 'my-view1',
+
+            handleSignIn: function (response) {
+                this.status = 'Signin granted';
+                this.userName = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName();
+                this.email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
+                this.token = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
+            },
+
+            handleSignOut: function (response) {
+                this.status = 'Signed out';
+                this.userName = "";
+                this.email = "";
+                this.token = "";
+            }
+
+
+        })
+        ;
+
+    </script>
 
 </dom-module>
