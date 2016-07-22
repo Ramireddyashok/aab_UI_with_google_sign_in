@@ -1,8 +1,8 @@
 ### What Is This App?
 
  * This app was created in response to [this blog challenge](https://betterologist.net/2016/07/you-are-a-failure-full-stack-2016-if/) to become a true 2016 full stack developer.
- * It is mostly a template created app, with Polymer's own google-signin component added.
  * It is made in response to the need for a HelloWorld app with **Authentication**
+ * It is mostly a template created app, with Polymer's own google-signin component added manually, afterwards.
  
 ### HelloWorld Google-signin
 
@@ -19,7 +19,7 @@ Yes. [ttfhw2.datafundamentals.com](https://ttfhw2.datafundamentals.com)
 
 ### How This App Was Created
 
-This base app was created by [Polymer CLI using these instructions](https://www.polymer-project.org/1.0/start/toolbox/set-up#install-the-polymer-cli). See more details on this portion [here](aaa_UI_2016_state_of_the_art/blob/master/NOTES.md).
+This base app was created by [Polymer CLI using these instructions](https://www.polymer-project.org/1.0/start/toolbox/set-up#install-the-polymer-cli). See more details on this portion [here](https://github.com/TTFHW/aaa_UI_2016_state_of_the_art/blob/master/NOTES.md).
 
 I then got a [google-signin cert from this site](https://developers.google.com/identity/sign-in/web/devconsole-project).
 

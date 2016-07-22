@@ -53,6 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="card">
             <div class="circle">1</div>
             <h1>Google Signin Demo</h1>
+            <p>This page should fail on a phone, work on a computer, due to code used.</p>
             <google-signin
                     client-id="983439464209-ha1va498rvsmvgu3h7tb4ujsjc9hm9u2.apps.googleusercontent.com"
                     signed-in="{{signedIn}}"
@@ -63,6 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <p><strong>UserName: 	&nbsp;	&nbsp;</strong><span>{{userName}}</span></p>
             <p><strong>Email: 	&nbsp;	&nbsp;</strong><span>{{email}}</span></p>
             <p><strong>Status: 	&nbsp;	&nbsp;</strong><span>{{status}}</span></p>
+            <p><strong>Id: 	&nbsp;	&nbsp;</strong><span>{{id}}</span></p>
             <p><strong>Id Token: 	&nbsp;	&nbsp;</strong><span>{{token}}</span></p>
         </div>
 
@@ -78,7 +80,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.status = 'Signin granted';
                 this.userName = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName();
                 this.email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
-                this.token = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
+                this.id = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
+                this.token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
             },
 
             handleSignOut: function (response) {
@@ -86,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.userName = "";
                 this.email = "";
                 this.token = "";
+                this.id = "";
             }
 
 
